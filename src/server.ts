@@ -1,12 +1,14 @@
-import { Request, Response } from "express";
 import * as express from "express";
+import boletoRoutes from "./routes/BoletoRoutes";
+import { AppDataSource } from "./data-source";
 
-const app = express();
+AppDataSource.initialize()
+   .then(() => {
+      const app = express();
 
-app.use(express.json());
+      app.use(express.json());
+      app.use("/boletos", boletoRoutes);
 
-app.get("/", (req: Request, res: Response) => {
-   res.status(200).json({ message: "Rota payflow app" });
-});
-
-app.listen(3333, () => console.log("Server on http://localhost:3333/"));
+      app.listen(3333, () => console.log("Server on http://localhost:3333/"));
+   })
+   .catch((error) => console.log(error));
