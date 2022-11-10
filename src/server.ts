@@ -1,8 +1,15 @@
+import "dotenv/config";
 import * as express from "express";
 import boletoRoutes from "./routes/BoletoRoutes";
-import { AppDataSource } from "./data-source";
+import mongoose from "mongoose";
 
-AppDataSource.initialize()
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+
+mongoose
+   .connect(
+      `mongodb+srv://${username}:${password}@clusterpayflowapp.9mairl2.mongodb.net/boletos?retryWrites=true&w=majority`
+   )
    .then(() => {
       const app = express();
 

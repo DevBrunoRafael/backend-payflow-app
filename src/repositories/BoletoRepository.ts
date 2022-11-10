@@ -1,4 +1,5 @@
-import { AppDataSource } from "../data-source";
-import { Boleto } from "../models/Boleto";
+import Boleto from "../database/schemas/Boleto";
 
-export const boletoRepository = AppDataSource.getMongoRepository(Boleto);
+export class BoletoRepository {
+   // implements methods
+}
