@@ -1,11 +1,10 @@
-import { StatusBoleto } from "../enum/StatusBoleto";
 import { Request, Response } from "express";
-import Boleto from "../database/schemas/Boleto";
+import BoletoRepository from "../repositories/BoletoRepository";
 
 export class BoletoController {
    async listarTodosBoletos(req: Request, res: Response) {
       try {
-         const boletos = await Boleto.find();
+         const boletos = await BoletoRepository.findAll();
          return res.status(200).json(boletos);
       } catch (error) {
          console.log(error);
@@ -17,9 +16,7 @@ export class BoletoController {
 
    async buscarBoletoPorId(req: Request, res: Response) {
       try {
-         const { _id } = req.params;
-
-         const boleto = await Boleto.findById(_id);
+         const boleto = await BoletoRepository.findOne(req.params._id);
          return res.status(200).json(boleto);
       } catch (error) {
          console.log(error);
@@ -32,14 +29,12 @@ export class BoletoController {
    async criarNovoBoleto(req: Request, res: Response) {
       try {
          const { nomeBoleto, vencimento, valor, codigo } = req.body;
-
-         await Boleto.create({
+         await BoletoRepository.create({
             nomeBoleto,
             vencimento,
             valor,
             codigo,
          });
-
          return res.status(201).json({
             message: "Boleto cadastrado!",
          });
@@ -53,9 +48,7 @@ export class BoletoController {
 
    async deletarBoleto(req: Request, res: Response) {
       try {
-         const { _id } = req.params;
-
-         await Boleto.findByIdAndDelete(_id);
+         await BoletoRepository.deleteOne(req.params._id);
          return res.status(200).json({
             message: "Boleto deletado!",
          });
@@ -69,12 +62,7 @@ export class BoletoController {
 
    async marcarComoPago(req: Request, res: Response) {
       try {
-         const { _id } = req.params;
-
-         await Boleto.findByIdAndUpdate(_id, {
-            status: StatusBoleto.PAGO,
-         });
-
+         await BoletoRepository.update(req.params._id);
          return res.status(200).json({
             message: "Boleto pago!",
          });
@@ -88,11 +76,7 @@ export class BoletoController {
 
    async listarBoletosPagos(req: Request, res: Response) {
       try {
-         const boletos = await Boleto.find();
-         const boletosPagos = boletos.filter(
-            (item) => item.status == StatusBoleto["PAGO"]
-         );
-
+         const boletosPagos = await BoletoRepository.findAllPaid();
          return res.status(200).json(boletosPagos);
       } catch (error) {
          console.log(error);
