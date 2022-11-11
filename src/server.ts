@@ -16,6 +16,6 @@ mongoose
       app.use(express.json());
       app.use("/boletos", boletoRoutes);
 
-      app.listen(3333, () => console.log("Server on http://localhost:3333/"));
+      app.listen(3333, () => console.log("Server on http://localhost:3333"));
    })
    .catch((error) => console.log(error));
