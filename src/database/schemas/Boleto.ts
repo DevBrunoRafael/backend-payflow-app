@@ -11,7 +11,7 @@ const Boleto = new mongoose.Schema({
       require: true,
    },
    valor: {
-      type: Schema.Types.Decimal128,
+      type: Schema.Types.Number,
       require: true,
    },
    codigo: {

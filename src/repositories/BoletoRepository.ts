@@ -18,9 +18,7 @@ class BoletoRepository {
    }
 
    async findAllPaid() {
-      return (await this.findAll()).filter(
-         (item) => item.status == StatusBoleto["PAGO"]
-      );
+      return await Boleto.find().where("status").equals(StatusBoleto["PAGO"]);
    }
 
    async create(boleto: BoletoType) {

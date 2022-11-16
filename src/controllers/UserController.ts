@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import UserRepository from "../repositories/UserRepository";
 import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcrypt";
-import { BadRequestError, UnouthorizedError } from "helpers/api-errors";
+import { BadRequestError } from "../helpers/api-errors";
 
 export class UserController {
    async createUser(req: Request, res: Response) {

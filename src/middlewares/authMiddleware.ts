@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import UserRepository from "../repositories/UserRepository";
 import * as jwt from "jsonwebtoken";
+import { UnauthorizedError } from "../helpers/api-errors";
 
 type JwtPayload = {
    _id: string;
@@ -14,8 +15,7 @@ export const authMiddleware = async (
    const { authorization } = req.headers;
 
    if (!authorization) {
-      res.status(401).send();
-      throw new Error("Não autorizado");
+      throw new UnauthorizedError("Usuário não autorizado.");
    }
 
    const token = authorization.split(" ")[1];
@@ -27,8 +27,7 @@ export const authMiddleware = async (
    const user = await UserRepository.findOne(_id);
 
    if (!user) {
-      res.status(403).json({ message: "Email inválido" });
-      throw new Error();
+      throw new UnauthorizedError("Não autorizado");
    }
 
    req.user = user.id;
