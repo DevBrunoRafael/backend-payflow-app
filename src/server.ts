@@ -1,6 +1,7 @@
 import "dotenv/config";
 import * as express from "express";
 import boletoRoutes from "./routes/BoletoRoutes";
+import authRoutes from "./routes/AuthRoutes";
 import mongoose from "mongoose";
 
 const username = process.env.MONGODB_USERNAME;
@@ -15,6 +16,7 @@ mongoose
 
       app.use(express.json());
       app.use("/boletos", boletoRoutes);
+      app.use("/auth", authRoutes);
 
       app.listen(3333, () => console.log("Server on http://localhost:3333"));
    })
