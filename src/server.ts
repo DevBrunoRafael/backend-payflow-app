@@ -3,6 +3,7 @@ import * as express from "express";
 import boletoRoutes from "./routes/BoletoRoutes";
 import authRoutes from "./routes/AuthRoutes";
 import mongoose from "mongoose";
+import { errorMiddleware } from "./middlewares/errorsMiddleware";
 
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
@@ -15,8 +16,9 @@ mongoose
       const app = express();
 
       app.use(express.json());
-      app.use("/boletos", boletoRoutes);
       app.use("/auth", authRoutes);
+      app.use("/boletos", boletoRoutes);
+      app.use(errorMiddleware);
 
       app.listen(3333, () => console.log("Server on http://localhost:3333"));
    })
