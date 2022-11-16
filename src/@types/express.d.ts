@@ -1,6 +1,6 @@
-declare global {
+export declare global {
    declare namespace Express {
-      export interface Request {
+      interface Request {
          user: string;
       }
    }
