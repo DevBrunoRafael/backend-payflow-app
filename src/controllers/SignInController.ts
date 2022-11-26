@@ -11,7 +11,7 @@ import * as bcrypt from "bcrypt";
 
 export class SignInController {
    async signIn(req: Request, res: Response) {
-      console.log("bateu");
+      console.log("bateu no signin");
 
       const { email, password } = req.body;
 

@@ -30,3 +30,9 @@ export class ForbidenError extends ApiError {
       super(message, 403);
    }
 }
+
+export class EmailInUseError extends ApiError {
+   constructor(message: string) {
+      super(message, 422);
+   }
+}

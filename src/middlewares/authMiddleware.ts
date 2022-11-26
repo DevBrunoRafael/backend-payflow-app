@@ -30,7 +30,9 @@ export const authMiddleware = async (
       throw new UnauthorizedError("Não autorizado");
    }
 
-   req.user = user.id;
+   // passa o id do usuário logado para os controladores,
+   // para passar dados por completo deve-se alterar o @types
+   req.userId = user.id;
 
    next();
 };
