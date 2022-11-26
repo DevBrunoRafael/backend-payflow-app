@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { BadRequestError } from "helpers/api-errors";
 import BoletoRepository from "../repositories/BoletoRepository";
 
 export class BoletoController {
@@ -14,6 +15,13 @@ export class BoletoController {
 
    async criarNovoBoleto(req: Request, res: Response) {
       const { nomeBoleto, vencimento, valor, codigo } = req.body;
+
+      const existingBarcode = await BoletoRepository.exists(codigo);
+
+      if (existingBarcode) {
+         throw new BadRequestError("Código de barras já está cadastrado.");
+      }
+
       await BoletoRepository.create({
          nomeBoleto,
          vencimento,

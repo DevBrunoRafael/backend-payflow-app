@@ -39,6 +39,10 @@ class BoletoRepository {
    async deleteOne(_id: string, userId: string) {
       await Boleto.findByIdAndDelete(_id).where("user").equals(userId);
    }
+
+   async exists(codigo: string) {
+      return await Boleto.findOne({ codigo }).exec();
+   }
 }
 
 export default new BoletoRepository();
