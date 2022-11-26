@@ -1,11 +1,11 @@
+import { SignInController } from "../controllers/SignInController";
+import { SignUpController } from "../controllers/SignUpController";
 import { Router } from "express";
-import { UserController } from "../controllers/UserController";
 
 const authRoutes = Router();
-const userController = new UserController();
 
-authRoutes.post("/register", userController.createUser);
-authRoutes.post("/login", userController.login);
-authRoutes.get("/teste", userController.getTest);
+authRoutes.post("/register", new SignUpController().createUser);
+authRoutes.post("/login", new SignInController().signIn);
+authRoutes.get("/authenticated/:_id", new SignInController().authenticatedUser);
 
 export default authRoutes;
