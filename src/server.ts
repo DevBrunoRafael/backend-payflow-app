@@ -19,7 +19,7 @@ mongoose
 
       app.use(express.json());
       app.use("/auth", authRoutes);
-      app.use("/boletos", authMiddleware, boletoRoutes); // testar pra ver se presta
+      app.use("/boletos", authMiddleware, boletoRoutes); // rotas que necessitam de autorização
       app.use(errorMiddleware);
 
       app.listen(3333, () => console.log("Server on http://localhost:3333"));

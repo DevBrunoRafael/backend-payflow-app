@@ -30,6 +30,11 @@ const Boleto = new mongoose.Schema({
       default: Date.now(),
       require: true,
    },
+   user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      require: true,
+   },
 });
 
 export default mongoose.model("Boleto", Boleto);
