@@ -22,6 +22,6 @@ mongoose
       app.use("/boletos", authMiddleware, boletoRoutes); // rotas que necessitam de autorização
       app.use(errorMiddleware);
 
-      app.listen(3333, () => console.log("Server on http://localhost:3333"));
+      app.listen(3333, () => console.log("Server on 🚀"));
    })
    .catch((error) => console.log(error));

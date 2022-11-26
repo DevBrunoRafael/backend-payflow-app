@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { BadRequestError } from "helpers/api-errors";
+import { BadRequestError } from "../helpers/api-errors";
 import BoletoRepository from "../repositories/BoletoRepository";
 
 export class BoletoController {
