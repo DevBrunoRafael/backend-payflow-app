@@ -32,7 +32,7 @@ export class SignInController {
       });
 
       res.status(200).json({
-         useId: user._id,
+         nameUser: user.nome,
          token: token,
       });
    }
