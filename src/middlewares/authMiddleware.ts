@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { NextFunction, Request, Response } from "express";
 import UserRepository from "../repositories/UserRepository";
 import * as jwt from "jsonwebtoken";

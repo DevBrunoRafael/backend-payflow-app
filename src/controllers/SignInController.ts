@@ -1,9 +1,6 @@
+import "dotenv/config";
 import { Request, Response } from "express";
-import {
-   BadRequestError,
-   NotFoundError,
-   UnauthorizedError,
-} from "../helpers/api-errors";
+import { BadRequestError, NotFoundError } from "../helpers/api-errors";
 import UserRepository from "../repositories/UserRepository";
 
 import * as jwt from "jsonwebtoken";
