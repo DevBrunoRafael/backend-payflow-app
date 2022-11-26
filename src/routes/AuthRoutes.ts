@@ -6,6 +6,5 @@ const authRoutes = Router();
 
 authRoutes.post("/register", new SignUpController().createUser);
 authRoutes.post("/login", new SignInController().signIn);
-authRoutes.get("/authenticated/:_id", new SignInController().authenticatedUser);
 
 export default authRoutes;

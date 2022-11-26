@@ -39,16 +39,4 @@ export class SignInController {
          token: token,
       });
    }
-
-   async authenticatedUser(req: Request, res: Response) {
-      console.log("route access");
-
-      const user = await UserRepository.findOne(req.params._id);
-
-      if (!user) {
-         throw new UnauthorizedError("Não autorizado");
-      }
-
-      return res.status(200).json({ nome: user.nome });
-   }
 }
