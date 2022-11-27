@@ -10,7 +10,7 @@ export class SignUpController {
 
       if (emailInUse) {
          throw new EmailInUseError(
-            "Não foi possivel realizar o cadastro, o email informado já está foi cadastrado."
+            "Não foi possivel realizar o cadastro, o email informado já foi cadastrado."
          );
       }
 
