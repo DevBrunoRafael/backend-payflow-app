@@ -6,10 +6,12 @@ export class SignUpController {
    async createUser(req: Request, res: Response) {
       const { nome, email, password } = req.body;
 
-      const emailInUSe = await UserRepository.findUserByEmail(req.params.email);
+      const emailInUse = await UserRepository.findUserByEmail(email);
 
-      if (emailInUSe) {
-         throw new EmailInUseError("Email em uso.");
+      if (emailInUse) {
+         throw new EmailInUseError(
+            "Não foi possivel realizar o cadastro, o email informado já está foi cadastrado."
+         );
       }
 
       await UserRepository.create({
