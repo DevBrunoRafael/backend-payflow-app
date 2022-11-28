@@ -15,7 +15,11 @@ class BoletoRepository {
    }
 
    async findAll(userId: string) {
-      return await Boleto.find().where("user").equals(userId);
+      return await Boleto.find()
+         .where("status")
+         .equals(StatusBoleto["PENDENTE"])
+         .where("user")
+         .equals(userId);
    }
 
    async findAllPaid(userId: string) {
